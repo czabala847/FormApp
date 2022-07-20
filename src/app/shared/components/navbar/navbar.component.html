@@ -1,1 +1,30 @@
-<p>navbar works!</p>
+<article class="MenuTemplate">
+  <h2>Templates</h2>
+  <hr />
+
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      *ngFor="let item of templateRoutes"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+    >
+      {{ item.name }}
+    </li>
+  </ul>
+</article>
+
+<article class="MenuReactive mt-3">
+  <h2>Reactivos</h2>
+  <hr />
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      *ngFor="let item of reactiveRoutes"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+    >
+      {{ item.name }}
+    </li>
+  </ul>
+</article>
