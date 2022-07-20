@@ -15,12 +15,23 @@ export class BasicsComponent implements OnInit {
 
   save() {
     console.log(this.myForm);
+    this.myForm.resetForm({
+      price: 0,
+      stock: 0,
+    });
   }
 
   nameValid(): boolean {
     return (
       this.myForm?.form.controls['product']?.invalid &&
       this.myForm?.form.controls['product']?.touched
+    );
+  }
+
+  priceValid(): boolean {
+    return (
+      this.myForm?.form.controls['price']?.invalid &&
+      this.myForm?.form.controls['price']?.touched
     );
   }
 }

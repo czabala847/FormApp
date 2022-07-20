@@ -34,7 +34,11 @@
             ngModel
             name="price"
             min="0"
+            required
           />
+          <span class="form-text text-danger" *ngIf="priceValid()"
+            >El precio debe ser mayor o igual a cero</span
+          >
         </div>
       </div>
 
