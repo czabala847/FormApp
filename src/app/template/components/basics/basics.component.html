@@ -1,1 +1,64 @@
-<p>basics works!</p>
+<h2>Template: Básicos</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="save()" #myForm="ngForm" autocomplete="off">
+      <!-- campo del producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Producto</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre del producto"
+            ngModel
+            name="product"
+            minlength="3"
+            required
+          />
+          <span class="form-text text-danger" *ngIf="nameValid()"
+            >Debe de ser de 3 letras</span
+          >
+        </div>
+      </div>
+
+      <!-- campo del precio -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Precio del producto"
+            ngModel
+            name="price"
+            min="0"
+          />
+        </div>
+      </div>
+
+      <!-- campo de existencias -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Existencias</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="existencias del producto"
+            ngModel
+            name="stock"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary float-end">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
