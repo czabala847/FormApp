@@ -1,1 +1,95 @@
-<p>dynamics works!</p>
+<h2>Template: <small>Dinámicos</small></h2>
+<hr />
+
+<form (ngSubmit)="save()" #myForm="ngForm" autocomplete="off">
+  <!-- Campo nombre -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Nombre</label>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Nombre de la persona"
+        [ngModel]="person.name"
+        name="name"
+        required
+      />
+    </div>
+    <span
+      class="form-text text-danger"
+      *ngIf="
+        myForm.form.controls['name']?.invalid &&
+        myForm.form.controls['name']?.touched
+      "
+      >Este campo es obligatorio</span
+    >
+  </div>
+
+  <!-- Campo dinámico agregar juego -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Agregar favorito"
+          name="newGame"
+          [(ngModel)]="newGame"
+          (keyup.enter)="addFav()"
+        />
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="addFav()"
+        >
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campos favoritos -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favoritos</label>
+    <div class="col-sm-9">
+      <div
+        class="input-group mb-2"
+        *ngFor="let fav of person.favs; let i = index"
+      >
+        <input
+          type="text"
+          class="form-control"
+          name="fav_{{ i }}"
+          [(ngModel)]="fav.name"
+          required
+        />
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="deleteFav(i)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón enviar -->
+  <div class="row">
+    <div class="col">
+      <button
+        type="submit"
+        class="btn btn-primary float-end"
+        [disabled]="myForm.invalid"
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
+<span>Persona</span>
+<pre>
+  {{ person | json }}
+</pre>
