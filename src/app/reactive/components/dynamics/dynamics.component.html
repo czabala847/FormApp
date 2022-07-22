@@ -1,1 +1,72 @@
-<p>dynamics works!</p>
+<h2>Reactivos: <small>Dinámicos</small></h2>
+<hr />
+
+<form autocomplete="off">
+  <!-- Campo nombre -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Nombre</label>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Nombre de la persona"
+        name="name"
+      />
+    </div>
+    <span class="form-text text-danger" *ngIf="false"
+      >Este campo es obligatorio</span
+    >
+  </div>
+
+  <!-- Campo dinámico agregar juego -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Agregar favorito"
+          name="newGame"
+          (keyup.enter)="addFav()"
+        />
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="addFav()"
+        >
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campos favoritos -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favoritos</label>
+    <div class="col-sm-9">
+      <div class="input-group mb-2" *ngFor="let fav of []; let i = index">
+        <input type="text" class="form-control" name="fav_{{ i }}" />
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="deleteFav()"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón enviar -->
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn btn-primary float-end">Guardar</button>
+    </div>
+  </div>
+</form>
+
+<!-- <span>Persona</span>
+<pre>
+  {{ person | json }}
+</pre> -->
