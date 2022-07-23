@@ -28,3 +28,18 @@
     </li>
   </ul>
 </article>
+
+<article class="MenuReactive mt-3">
+  <h2>Validaciones</h2>
+  <hr />
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      *ngFor="let item of authRoutes"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+    >
+      {{ item.name }}
+    </li>
+  </ul>
+</article>

@@ -41,6 +41,17 @@ export class NavbarComponent implements OnInit {
     },
   ];
 
+  authRoutes: RoutesInterface[] = [
+    {
+      name: 'Registro',
+      route: 'auth/register',
+    },
+    {
+      name: 'login',
+      route: 'auth/login',
+    },
+  ];
+
   constructor() {}
 
   ngOnInit(): void {}
