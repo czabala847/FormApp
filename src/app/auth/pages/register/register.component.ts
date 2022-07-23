@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +25,7 @@ export class RegisterComponent implements OnInit {
         [Validators.required, Validators.pattern(this.fullnamePattern)],
       ],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+      username: ['', [Validators.required, this.noToBeStrider]],
     });
   }
 
@@ -41,5 +47,15 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
     }
+  }
+
+  noToBeStrider(control: FormControl) {
+    const value: string = control.value?.trim().toLowerCase();
+
+    if (value === 'strider') {
+      return { noStrider: true };
+    }
+
+    return null; //esta bien
   }
 }
