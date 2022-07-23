@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basics',
@@ -12,12 +12,33 @@ export class BasicsComponent implements OnInit {
   // });
 
   basicForm: FormGroup = this.formBuilder.group({
-    name: ['RTX 4080ti'],
-    price: [0],
-    stock: [0],
+    name: [, [Validators.required, Validators.minLength(3)]],
+    price: [, [Validators.required, Validators.min(0)]],
+    stock: [, [Validators.required, Validators.min(0)]],
   });
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.basicForm.patchValue({
+      name: 'RTX 4500',
+      price: 0,
+    });
+  }
+
+  validField(nameField: string) {
+    return (
+      this.basicForm.controls[nameField].errors &&
+      this.basicForm.controls[nameField].touched
+    );
+  }
+
+  save() {
+    if (this.basicForm.invalid) {
+      this.basicForm.markAllAsTouched();
+    } else {
+      console.log('Guardando');
+      this.basicForm.reset();
+    }
+  }
 }
