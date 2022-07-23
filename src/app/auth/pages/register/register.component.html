@@ -62,7 +62,11 @@
             type="password"
             class="form-control"
             placeholder="Contraseña de la cuenta"
+            formControlName="password"
           />
+          <span class="form-text text-danger" *ngIf="validField('password')">
+            La contraseña debe contener al menos 8 letras
+          </span>
         </div>
       </div>
 
@@ -74,7 +78,16 @@
             type="password"
             class="form-control"
             placeholder="Confirmar la contraseña"
+            formControlName="confirmPassword"
           />
+          <span
+            class="form-text text-danger"
+            *ngIf="validField('confirmPassword')"
+          >
+            <!-- registerForm.hasError('match_password') &&
+          registerForm.get('confirmPassword')?.touched -->
+            Las contraseñas deben de ser iguales
+          </span>
         </div>
       </div>
 
@@ -97,4 +110,14 @@
 <h2>Username</h2>
 <pre>
   {{ registerForm.controls["username"].errors | json }}
+</pre>
+
+<h2>password</h2>
+<pre>
+  {{ registerForm.controls["password"].errors | json }}
+</pre>
+
+<h2>Confirm password</h2>
+<pre>
+  {{ registerForm.controls["confirmPassword"].errors | json }}
 </pre>

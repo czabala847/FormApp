@@ -18,23 +18,32 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private vs: ValidatorService) {
-    this.registerForm = this.formBuilder.group({
-      name: [
-        '',
-        [Validators.required, Validators.pattern(this.vs.fullnamePattern)],
-      ],
-      email: [
-        '',
-        [Validators.required, Validators.pattern(this.vs.emailPattern)],
-      ],
-      username: ['', [Validators.required, this.vs.noToBeStrider]],
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        name: [
+          '',
+          [Validators.required, Validators.pattern(this.vs.fullnamePattern)],
+        ],
+        email: [
+          '',
+          [Validators.required, Validators.pattern(this.vs.emailPattern)],
+        ],
+        username: ['', [Validators.required, this.vs.noToBeStrider]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required]],
+      },
+      {
+        validators: [this.vs.matchPassword('password', 'confirmPassword')],
+        // validators: [this.vs.matchPassword2],
+      }
+    );
   }
 
   ngOnInit(): void {
     this.registerForm.patchValue({
       name: 'Carlos Zabala',
       email: 'test1@test.com',
+      username: 'czabala847',
     });
   }
 
