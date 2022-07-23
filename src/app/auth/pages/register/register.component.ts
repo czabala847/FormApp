@@ -1,15 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
 
-  constructor() { }
+  fullnamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
+  emailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) {
+    this.registerForm = this.formBuilder.group({
+      name: [
+        '',
+        [Validators.required, Validators.pattern(this.fullnamePattern)],
+      ],
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+    });
   }
 
+  ngOnInit(): void {
+    this.registerForm.patchValue({
+      name: 'Carlos Zabala',
+      email: 'test1@test.com',
+    });
+  }
+
+  validField(nameField: string) {
+    return (
+      this.registerForm.get(nameField)?.invalid &&
+      this.registerForm.get(nameField)?.touched
+    );
+  }
+
+  save() {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+    }
+  }
 }
