@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { ValidatorService } from 'src/app/shared/validators/validator.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,17 +17,17 @@ import {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  fullnamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  emailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private vs: ValidatorService) {
     this.registerForm = this.formBuilder.group({
       name: [
         '',
-        [Validators.required, Validators.pattern(this.fullnamePattern)],
+        [Validators.required, Validators.pattern(this.vs.fullnamePattern)],
       ],
-      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      username: ['', [Validators.required, this.noToBeStrider]],
+      email: [
+        '',
+        [Validators.required, Validators.pattern(this.vs.emailPattern)],
+      ],
+      username: ['', [Validators.required, this.vs.noToBeStrider]],
     });
   }
 
@@ -47,15 +49,5 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
     }
-  }
-
-  noToBeStrider(control: FormControl) {
-    const value: string = control.value?.trim().toLowerCase();
-
-    if (value === 'strider') {
-      return { noStrider: true };
-    }
-
-    return null; //esta bien
   }
 }
