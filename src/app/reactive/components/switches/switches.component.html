@@ -1,7 +1,7 @@
 <h2>Reactivos: Switches</h2>
 <hr />
 
-<form>
+<form [formGroup]="switchesForm" (ngSubmit)="save()">
   <!-- Radio -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Género</label>
@@ -10,7 +10,7 @@
         <input
           class="form-check-input"
           type="radio"
-          name="gender"
+          formControlName="gender"
           id="radioMale"
           value="M"
         />
@@ -20,7 +20,7 @@
         <input
           class="form-check-input"
           type="radio"
-          name="gender"
+          formControlName="gender"
           id="radioFemale"
           value="F"
         />
@@ -39,7 +39,7 @@
           type="checkbox"
           role="switch"
           id="flexSwitchCheckChecked"
-          name="notification"
+          formControlName="notification"
         />
         <label class="form-check-label" for="flexSwitchCheckChecked"
           >Quiero recibir notificaciones</label
@@ -58,6 +58,7 @@
           type="checkbox"
           id="flexCheckDefault"
           name="terms"
+          formControlName="terms"
         />
         <label class="form-check-label" for="flexCheckDefault">
           Términos y condiciones de uso
@@ -69,13 +70,13 @@
   <!-- Botón -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary float-end">Guardar</button>
+      <button type="submit" class="btn btn-primary float-end">Guardar</button>
     </div>
   </div>
 </form>
 
-<!-- <h5>Valor del formulario</h5>
-<pre> {{ myForm.value | json }}</pre>
+<h5>Valor del formulario</h5>
+<pre> {{ switchesForm.value | json }}</pre>
 <br />
 
 <h5>Persona</h5>
@@ -83,7 +84,7 @@
 <br />
 
 <h5>Valid</h5>
-<pre> {{ myForm.valid | json }}</pre>
+<pre> {{ switchesForm.valid | json }}</pre>
 <br />
 
-<pre>Condiciones: </pre> -->
+<pre>Condiciones: </pre>
