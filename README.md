@@ -1,27 +1,39 @@
-# FormApp
+# AngularFormApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
+![Angular Form App](./src/assets/images/countries_select.png)
 
-## Development server
+## Descripción 📖
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Aplicación para el manejo de formularios en angular, se utilizan tanto **formularios template** (FormsModule) y **formularios reactivos** (ReactiveFormsModule).
+En ambos se emplean desde formularios básicos, dinámicos y el manejo de switches, así mismo se utilizan validaciones en cada uno de los formularios.
 
-## Code scaffolding
+Al final se realiza un proyecto de selectores anidados, en los que se hace peticiones a la api de [REST COUNTRIES](https://restcountries.com/) y en base al continente que se seleccione en el selector se mostraran selectores dinámicos de los países y también de sus países fronterizos.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Temas puntuales 📌
 
-## Build
+### Template Form
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- FormsModule
+- ViewChild
+- Validaciones
+- Limpiar formularios
+- Formularios dinámicos
+- Template: Radio, Check y Switches
 
-## Running unit tests
+### Reactive Form
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- FormBuilder
+- Forms Validators
+- FormArray
+- Formularios reactivos: Switches
+- Validaciones con expresiones regulares
+- Validaciones personalizadas
+- Validar contraseñas iguales
+- Mensajes de error personalizados
+- Selectores anidados
+- Uso combineLatest, para multiples peticiones
 
-## Running end-to-end tests
+## Tecnologias utilizadas 🛠
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- [Angular](https://angular.io/) versión 14.0.0
+- [Bootstrap](https://getbootstrap.com/) versión 5.2.0
