@@ -33,7 +33,7 @@
             formControlName="email"
           />
           <span class="form-text text-danger" *ngIf="validField('email')">
-            El correo es obligatorio
+            {{ emailErrorMsg }}
           </span>
         </div>
       </div>

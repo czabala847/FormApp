@@ -54,6 +54,20 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  get emailErrorMsg(): string {
+    const errors = this.registerForm.get('email')?.errors;
+
+    if (errors) {
+      if (errors['required']) {
+        return 'El correo es obligatorio.';
+      } else if (errors['pattern']) {
+        return 'El correo no tiene un formato válido.';
+      }
+    }
+
+    return '';
+  }
+
   save() {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
