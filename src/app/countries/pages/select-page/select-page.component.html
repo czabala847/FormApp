@@ -3,7 +3,7 @@
 
 <form [formGroup]="countryForm" (ngSubmit)="save()">
   <!-- region -->
-  <div class="row">
+  <div class="row mb-2">
     <div class="col">
       <label class="form-label">Continente:</label>
       <select class="form-control" formControlName="region">
@@ -16,15 +16,40 @@
   </div>
 
   <!-- país -->
-  <div class="row">
+  <div class="row mb-2" *ngIf="countries.length > 0">
     <div class="col">
       <label class="form-label">País:</label>
       <select class="form-control" formControlName="country">
         <option value="">-- Seleccione País --</option>
-        <option *ngFor="let country of countries" [value]="country.cca3">
+        <option
+          *ngFor="let country of countries"
+          [value]="country.cca3 | lowercase"
+        >
           {{ country.name.common }}
         </option>
       </select>
+    </div>
+  </div>
+
+  <!-- fronteras -->
+  <div class="row mb-2" *ngIf="borders.length > 0">
+    <div class="col">
+      <label class="form-label">Fronteras:</label>
+      <select class="form-control" formControlName="border">
+        <option value="">-- Seleccione el país fronterizo --</option>
+        <option
+          *ngFor="let border of borders"
+          [value]="border.cca3 | lowercase"
+        >
+          {{ border.name.common }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="loading">
+    <div class="col">
+      <div class="alert alert-primary">Cargando...</div>
     </div>
   </div>
 
